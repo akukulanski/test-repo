@@ -4,13 +4,51 @@ services:
     - docker
 
 before_install:
-    - echo "---before_install---"
+    - echo "---before install---"
     - docker build -t docker_image -f .gci/dockerfile .
 
+install:
+    - echo "---install---"
+
+before_script:
+    - echo "---before script---"
+
 script:
-    - docker ps -a
+    - echo "---script---"
+    - docker pdocker_image ps -a
+
+before_cache:
+    - echo "---before cache---"
 
 after_success:
+    - echo "---after success---"
     - echo "Test Success - Branch($TRAVIS_BRANCH) Pull Request($TRAVIS_PULL_REQUEST) Tag($TRAVIS_TAG)"
     - if [[ "$TRAVIS_BRANCH" == "master" ]]; then echo -e "---master!---"; fi
 
+after_failure:
+    - echo "---after failure---"
+
+#before_deploy:
+#    - echo "---before deploy---"
+
+#deploy:
+#    - echo "---deploy---"
+
+#after_deploy:
+#    - echo "---after deploy---"
+
+after_script:
+    - echo "---after script---"
+
+OPTIONAL Install apt addons
+OPTIONAL Install cache components
+before_install
+install
+before_script
+script
+OPTIONAL before_cache (for cleaning up cache)
+after_success or after_failure
+OPTIONAL before_deploy
+OPTIONAL deploy
+OPTIONAL after_deploy
+after_script
