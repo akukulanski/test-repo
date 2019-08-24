@@ -5,7 +5,7 @@ services:
 
 before_install:
     - echo "---before_install---"
-    - docker build -t .gci/dockerfile .
+    - docker build -t docker_image -f .gci/dockerfile .
 
 script:
     - docker ps -a
