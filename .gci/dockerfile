@@ -16,7 +16,7 @@ RUN apt install -y iverilog \
 
 RUN git clone https://github.com/cocotb/cocotb.git cocotb
 RUN python3 -m pip install ./cocotb
-RUN make -C cocotb/examples/endian_swapper/tests
+#RUN make -C cocotb/examples/endian_swapper/tests
 
 # Icestorm project dependencies
 RUN apt install -y build-essential clang bison flex libreadline-dev \
