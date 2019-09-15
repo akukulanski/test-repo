@@ -33,22 +33,16 @@ RUN make -C arachne-pnr -j$(nproc) && make -C arachne-pnr install
 # Dependencies:
 RUN apt install -y libeigen3-dev
 RUN git clone https://github.com/YosysHQ/nextpnr nextpnr
-RUN cd nextpnr
-#RUN cmake -DARCH=ice40 -DCMAKE_INSTALL_PREFIX=/usr/local .
-#RUN make -j$(nproc) && make install
-RUN cd ..
+RUN cd nextpnr && cmake -DARCH=ice40 -DCMAKE_INSTALL_PREFIX=/usr/local .
+RUN make -C nextpnr -j$(nproc) && make -C nextpnr install
 
 RUN git clone https://github.com/cliffordwolf/yosys.git yosys
 RUN make -C yosys -j$(nproc) && make -C yosys install
 
+RUN mkdir -p /etc/udev/rules.d/
 RUN echo ATTRS{idVendor}=="0403", ATTRS{idProduct}=="6010", MODE="0660", GROUP="plugdev", TAG+="uaccess" >> /etc/udev/rules.d/53-lattice-ftdi.rules
 
-
 ENV COCOTB /cocotb/
-
-
-
-
 
 #COPY . /app
 #RUN make /app

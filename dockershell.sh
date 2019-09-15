@@ -1,1 +1,1 @@
-docker run -it ejemplo.ubuntu18.04
+docker run -it docker_image

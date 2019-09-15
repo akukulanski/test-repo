@@ -1,1 +1,1 @@
-docker build -t ejemplo.ubuntu18.04 -f .gci/dockerfile .gci
+docker build -t docker_image -f .gci/dockerfile .gci
