@@ -3,9 +3,5 @@ FROM debian:stretch
 RUN echo "HOLA"
 ENV MY_ENV1 my_enviromental1
 
-#COPY . /app
-#RUN make /app
-#CMD python /app/app.py
+#ENTRYPOINT ["/bin/bash"]
 
-ENTRYPOINT ["/bin/bash"]
-#CMD ["-las"]

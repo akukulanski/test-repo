@@ -6,27 +6,16 @@ language: python
 before_install:
     - echo "---before install---"
     - docker build -t docker_image -f .gci/dockerfile .
+    - docker run -it -d --name test_img docker_image /bin/bash
 
-install:
-    - echo "---install---"
+#install:
+#    - echo "---install---"
 
-before_script:
-    - echo "---before script---"
+#before_script:
+#    - echo "---before script---"
 
-script:
-    - echo "---script---"
-    - docker docker_image ps -a
-
-before_cache:
-    - echo "---before cache---"
-
-after_success:
-    - echo "---after success---"
-    - echo "Test Success - Branch($TRAVIS_BRANCH) Pull Request($TRAVIS_PULL_REQUEST) Tag($TRAVIS_TAG)"
-    - if [[ "$TRAVIS_BRANCH" == "master" ]]; then echo -e "---master!---"; fi
-
-after_failure:
-    - echo "---after failure---"
+#before_cache:
+#    - echo "---before cache---"
 
 #before_deploy:
 #    - echo "---before deploy---"
@@ -37,5 +26,26 @@ after_failure:
 #after_deploy:
 #    - echo "---after deploy---"
 
-after_script:
-    - echo "---after script---"
+#after_script:
+#    - echo "---after script---"
+
+jobs:
+    include:
+        - stage: docker_img
+        script:
+            - echo "---script---"
+            - docker exec test_img "echo Docker Exec!!"
+            - docker run -it docker_image "echo Docker Run!!"
+        - stage: testing
+        script:
+            - echo "Acá corre el test"
+        after_success:
+            - echo "---after success---"
+            - echo "Test Success - Branch($TRAVIS_BRANCH) Pull Request($TRAVIS_PULL_REQUEST) Tag($TRAVIS_TAG)"
+            - if [[ "$TRAVIS_BRANCH" == "master" ]]; then echo -e "---master!---"; fi
+        after_failure:
+            - echo "---after failure---"
+
+
+
+# https://travis-ci.community/t/how-to-skip-jobs-based-on-the-files-changed-in-a-subdirectory/2979/11
