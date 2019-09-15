@@ -46,3 +46,5 @@ jobs:
 
     after_script:
         - echo "---after script---"
+
+# https://travis-ci.community/t/how-to-skip-jobs-based-on-the-files-changed-in-a-subdirectory/2979/11
