@@ -30,21 +30,23 @@ jobs:
 
             after_failure:
                 - echo "---after failure---"
+
+            #before_deploy:
+            #    - echo "---before deploy---"
+
+            #deploy:
+            #    - echo "---deploy---"
+
+            #after_deploy:
+            #    - echo "---after deploy---"
+
+            after_script:
+                - echo "---after script---"
         
         - stage: testing
             script:
                 - echo "Acá corre el test"
 
-    #before_deploy:
-    #    - echo "---before deploy---"
 
-    #deploy:
-    #    - echo "---deploy---"
-
-    #after_deploy:
-    #    - echo "---after deploy---"
-
-    after_script:
-        - echo "---after script---"
 
 # https://travis-ci.community/t/how-to-skip-jobs-based-on-the-files-changed-in-a-subdirectory/2979/11
