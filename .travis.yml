@@ -37,9 +37,9 @@ jobs:
       script:
       - echo "---stage Docker, script---"
       - docker build -t docker_image -f .gci/dockerfile .
-      - docker run -it -d --name test_img docker_image /bin/bash
-      - docker exec test_img "echo Docker Exec!!"
-      - docker run -it docker_image "echo Docker Run!!"
+      #- docker run -it -d --name test_img docker_image /bin/bash
+      #- docker exec test_img "echo Docker Exec!!"
+      - docker run -it docker_image echo Docker Run!!
     - stage: testing
       script:
       - echo "Acá corre el test"
