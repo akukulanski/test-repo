@@ -1,54 +1,48 @@
 language: python
 
-#services:
-#    - docker
+jobs:
+    include:
+        - stage: docker_img
+            #services:
+            #    - docker
 
-before_install:
-    - echo "---before install---"
-    - docker build -t docker_image -f .gci/dockerfile .
+            before_install:
+                - echo "---before install---"
+                - docker build -t docker_image -f .gci/dockerfile .
 
-install:
-    - echo "---install---"
+            install:
+                - echo "---install---"
 
-before_script:
-    - echo "---before script---"
+            before_script:
+                - echo "---before script---"
 
-script:
-    - echo "---script---"
-    - docker docker_image ps -a
+            script:
+                - echo "---script---"
+                - docker docker_image ps -a
 
-before_cache:
-    - echo "---before cache---"
+            before_cache:
+                - echo "---before cache---"
 
-after_success:
-    - echo "---after success---"
-    - echo "Test Success - Branch($TRAVIS_BRANCH) Pull Request($TRAVIS_PULL_REQUEST) Tag($TRAVIS_TAG)"
-    - if [[ "$TRAVIS_BRANCH" == "master" ]]; then echo -e "---master!---"; fi
+            after_success:
+                - echo "---after success---"
+                - echo "Test Success - Branch($TRAVIS_BRANCH) Pull Request($TRAVIS_PULL_REQUEST) Tag($TRAVIS_TAG)"
+                - if [[ "$TRAVIS_BRANCH" == "master" ]]; then echo -e "---master!---"; fi
 
-after_failure:
-    - echo "---after failure---"
+            after_failure:
+                - echo "---after failure---"
+        
+        - stage: testing
+            script:
+                - echo "Acá corre el test"
 
-#before_deploy:
-#    - echo "---before deploy---"
+    #before_deploy:
+    #    - echo "---before deploy---"
 
-#deploy:
-#    - echo "---deploy---"
+    #deploy:
+    #    - echo "---deploy---"
 
-#after_deploy:
-#    - echo "---after deploy---"
+    #after_deploy:
+    #    - echo "---after deploy---"
 
-after_script:
-    - echo "---after script---"
-
-#OPTIONAL Install apt addons
-#OPTIONAL Install cache components
-#before_install
-#install
-#before_script
-#script
-#OPTIONAL before_cache (for cleaning up cache)
-#after_success or after_failure
-#OPTIONAL before_deploy
-#OPTIONAL deploy
-#OPTIONAL after_deploy
-#after_script
+    after_script:
+        - echo "---after script---"

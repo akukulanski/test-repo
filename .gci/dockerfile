@@ -34,8 +34,8 @@ RUN make -C arachne-pnr -j$(nproc) && make -C arachne-pnr install
 RUN apt install -y libeigen3-dev
 RUN git clone https://github.com/YosysHQ/nextpnr nextpnr
 RUN cd nextpnr
-RUN cmake -DARCH=ice40 -DCMAKE_INSTALL_PREFIX=/usr/local .
-RUN make -j$(nproc) && make install
+#RUN cmake -DARCH=ice40 -DCMAKE_INSTALL_PREFIX=/usr/local .
+#RUN make -j$(nproc) && make install
 RUN cd ..
 
 RUN git clone https://github.com/cliffordwolf/yosys.git yosys
