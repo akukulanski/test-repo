@@ -40,7 +40,7 @@ jobs:
       #- docker run -it -d --name test_img docker_image /bin/bash
       #- docker exec test_img "echo Docker Exec!!"
       - docker run -it docker_image echo stage docker\: docker run 1
-      - docker run -it docker_image echo stage docker: docker run 2"
+      - docker run -it docker_image echo "stage docker: docker run 2"
       - docker run -it docker_image echo stage docker docker run 3
       - docker run -it docker_image "echo stage docker docker run 4"
       - docker run -it docker_image echo "stage docker docker run 5"
