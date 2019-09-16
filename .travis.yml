@@ -45,6 +45,7 @@ jobs:
       - docker run -it docker_image "echo stage docker docker run 4"
       - docker run -it docker_image echo "stage docker docker run 5"
       - docker run -it docker_image echo "stage docker\: docker run 6"
+      - 'docker run -it docker_image echo "stage docker: docker run 7"'
     - stage: testing
       script:
       - echo "Acá corre el test"
