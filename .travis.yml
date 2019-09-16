@@ -36,10 +36,13 @@ jobs:
     - stage: docker_img
       script:
       - echo "---stage Docker, script---"
+      - './login_docker.sh'
       - docker build -t docker_image -f .gci/dockerfile .
       #- 'docker run -it -d --name test_img docker_image /bin/bash'
       #- 'docker exec test_img echo "stage docker: docker exec"'
       - 'docker run -it docker_image echo "stage docker: docker run"'
+      - 'docker tag docker_image $DOCKER_USERNAME/test-reg'
+      - 'docker push $DOCKER_USERNAME/test-reg'
     - stage: testing
       script:
       - echo "Acá corre el test"
