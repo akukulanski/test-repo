@@ -25,8 +25,8 @@ jobs:
       script:
       - echo "Acá corre el test"
       - 'docker run -it $DOCKER_USERNAME/test-reg echo "stage test: docker run"'
-      - ./dockershell.sh "make run"
-      - ./dockershell.sh "make test"
+      - './dockershell.sh $DOCKER_USERNAME/test-reg "make run"'
+      - './dockershell.sh $DOCKER_USERNAME/test-reg "make test"'
       #- 'docker run -it $DOCKER_USERNAME/test-reg make run'
       #- 'docker run -it $DOCKER_USERNAME/test-reg make test'
     - stage: deployeo
