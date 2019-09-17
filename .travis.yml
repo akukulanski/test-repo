@@ -25,6 +25,15 @@ jobs:
       script:
       - echo "Acá corre el test"
       - 'docker run -it $DOCKER_USERNAME/test-reg echo "stage test: docker run"'
+      - 'docker run -it $DOCKER_USERNAME/test-reg make run'
+      - 'docker run -it $DOCKER_USERNAME/test-reg make test'
+    - stage: deployeo
+      deploy:
+        provider: releases
+        api_key:
+          secure: "hLMVFS2asWgoG7I1YRxK2lzxbGSDirmQC4I4cCMSM0uGYjqXUS4bJzoJgFzLmmG0F77M5F7Hrml72+wCMcY+uKEW45pSjgi17i/KFmiJz2t2akS8aCktqx1V5Ue9HqhE12JUiEd/HFUul4VW9i0133ERQg+dKdslrqzYFWZo3zHVECjT9LvktiSooldDkMggeK3qqJQ2CEy57cMZqDSBmcgphMyvoR5Ve71DUgP1LDGdZgch6wm0ytNMs7/ccFya7avR8SIK3MQQhAE6Z4/mz9oUHfCk7FKMnuUc4oNbko6iXR0pZsuzEI6/QpnEaZXQDsXspthfCsTtVWkomEMFm/PBoRur6gU46G6fNuhRW4bBdgkiVEzN/iqJLr48NrRcivbn1JlfLpDkJRLbRBzoCBc+lbTbxG8+ni8QR/HKrYu8Pzw62st3OYV/BhtQ0DgAOHVGj6dSGDSII9vdCwQNgtAKmmbVWyLYQef348C7cOgR6NeFlEC9klfWph0OmwDl+zwer16PimEhLA8ghMfiPZHs51RIqZ2Z03EcJ4wFruvtv/cXUHV2zngRBb3SEo0L12WAxDArgB+bd3rRATChdmo8anCcQ3XTh1SK+ODNuSDnrhvXku3wAE2h3yDoJYesxBP/LF+1dzHm34S3dJKOBpODTVIN4jocbPdxQQrrnsc="
+        file: 'release.zip'
+        skip_cleanup: true
 
 #services:
 #    - docker
