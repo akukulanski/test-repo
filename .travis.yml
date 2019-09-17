@@ -45,8 +45,11 @@ jobs:
       - 'docker push $DOCKER_USERNAME/test-reg'
     - stage: testing
       script:
+      - './login_docker.sh'
+      - 'docker pull $DOCKER_USERNAME/test-reg'
       - echo "Acá corre el test"
-      - 'docker run -it docker_image echo "stage test: docker run"'
+      - 'docker run -it $DOCKER_USERNAME/test-reg echo "stage test: docker run"'
+      #- 'docker run -it docker_image echo "stage test: docker run"'
 
 #after_success:
 #    - echo "---after success---"
