@@ -3,5 +3,8 @@ FROM debian:stretch
 RUN echo "HOLA"
 ENV MY_ENV1 my_enviromental1
 
+RUN apt-get update
+RUN apt-get install -y build-essential gcc
+
 #ENTRYPOINT ["/bin/bash"]
 
